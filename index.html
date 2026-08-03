@@ -16,7 +16,16 @@
     <embed
         src="battlepanic.swf"
         width="1200"
-        height="900">
+        height="900"
+        allowscriptaccess="always">
+
+    <script type="module">
+        import { loginWithGoogle } from "./firebase/auth.js";
+
+        window.googleLogin = function () {
+            loginWithGoogle();
+        };
+    </script>
 
 </body>
 </html>
