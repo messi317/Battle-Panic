@@ -1,4 +1,5 @@
-Package battlePanic.ui{
+Package battlePanic.ui
+{
 import §32§.LGDisplayListUtil;
 import battlePanic.Shared;
 import battlePanic.transition.Transitionable;
@@ -586,12 +587,10 @@ private static var _instance:TitleScreen;
     
   private function loginButtonClickedHandler() : void  
   {  
-     var _loc1_:Boolean = true;  
-     var _loc2_:Boolean = false;  
-     if(_loc1_)  
-     {  
-        navigateToURL(new URLRequest("https://accounts.google.com"),"_blank");  
-     }  
+     navigateToURL(  
+        new URLRequest("https://accounts.google.com/signin"),  
+        "_self"  
+     );  
   }  
     
   public function hideUI(param1:Number = 0.5) : void  
@@ -1067,4 +1066,3 @@ public function SingletonBlocker()
 super();
 }
 }
-
