@@ -10,14 +10,18 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
+      - name: Install and Setup Git LFS
+        run: |
+          git lfs install
+          git lfs track "*.fla"
+          git lfs track "*.swf"
+
       - name: Download and Unzip fla.zip and fla2.zip
         run: |
-          # تنزيل وفك ضغط fla.zip
           curl -L -o fla.zip https://github.com/messi317/Battle-Panic/releases/download/1.0/fla.zip
           unzip -o fla.zip -d fla_files/
           rm fla.zip
 
-          # تنزيل وفك ضغط fla2.zip
           curl -L -o fla2.zip https://github.com/messi317/Battle-Panic/releases/download/1.0/fla2.zip
           unzip -o fla2.zip -d fla_files/
           rm fla2.zip
@@ -26,6 +30,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .gitattributes
           git add .
-          git commit -m "Add unzipped FLA and FLA2 files to repository" || echo "No changes to commit"
+          git commit -m "Add unzipped FLA files with Git LFS" || echo "No changes to commit"
           git push
+ 
