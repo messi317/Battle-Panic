@@ -1,0 +1,28 @@
+name: Unzip Source Files
+
+on:
+  push:
+    paths:
+      - 'src.zip'
+  workflow_dispatch:
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Unzip src.zip
+        run: |
+          unzip -o src.zip -d .
+
+      - name: Commit Unzipped Files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Extract src folder automatically"
+ 
